@@ -1,0 +1,4 @@
+github.com/Tryanks/go-accessoryhid v0.0.0-20231214032111-d11ee90149d1 h1:829EWZLB8SuMAdhi0dbZYCfRTOcJqrZa35sqy6D3M4Q=
+github.com/Tryanks/go-accessoryhid v0.0.0-20231214032111-d11ee90149d1/go.mod h1:AdtJXknesa9CHDI1DyKPTu8sIvxZpitswMYLPaDVxaA=
+github.com/google/gousb v1.1.2 h1:1BwarNB3inFTFhPgUEfah4hwOPuDz/49I0uX8XNginU=
+github.com/google/gousb v1.1.2/go.mod h1:GGWUkK0gAXDzxhwrzetW592aOmkkqSGcj5KLEgmCVUg=

@@ -1,8 +1,9 @@
-package utils
+package hid
 
 import (
 	"fmt"
 	"github.com/Tryanks/go-accessoryhid"
+	"github.com/jeanbritz/go-android-bruteforce-pin.git/pkg/utils"
 )
 
 type Touchscreen struct {
@@ -15,10 +16,10 @@ type Actions interface {
 }
 
 func (t *Touchscreen) SetPosition(x int16, y int16) {
-	xMsb := GetMSB(x)
-	xLsb := GetLSB(x)
-	yMsb := GetMSB(y)
-	yLsb := GetLSB(y)
+	xMsb := utils.GetMSB(x)
+	xLsb := utils.GetLSB(x)
+	yMsb := utils.GetMSB(y)
+	yLsb := utils.GetLSB(y)
 
 	// Use Pointer to set absolute coordinates
 	err := t.Accessory.SendEvent([]byte{
