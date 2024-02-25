@@ -2,10 +2,10 @@ package accessory
 
 import (
 	"encoding/binary"
+	"fmt"
 	"github.com/google/gousb"
 	"math/rand"
 	"time"
-	"fmt"
 )
 
 // SkipList is a list of vendor IDs that are known to not support the accessory protocol

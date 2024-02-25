@@ -1,8 +1,7 @@
 module github.com/jeanbritz/go-android-bruteforce-pin.git
 
-go 1.21.5
+go 1.22.0
 
-require (
-	github.com/Tryanks/go-accessoryhid v0.0.0-20231214032111-d11ee90149d1 // indirect
-	github.com/google/gousb v1.1.2 // indirect
-)
+require github.com/Tryanks/go-accessoryhid v0.0.0-20240225051052-d9ed29fa4f0d
+
+require github.com/google/gousb v1.1.3 // indirect
