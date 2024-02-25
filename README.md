@@ -1,4 +1,5 @@
 # Android PIN Bruteforcer
+
 Purpose of this project is to demonstrate the use of the [Android Open Accessory Protocol (AOA)](https://source.android.com/docs/core/interaction/accessories/protocol)
 to mimic key presses on an Android device. The script goes and try to type each PIN in the Android device
 in the list of pins located [here](/pins) 
@@ -6,6 +7,18 @@ in the list of pins located [here](/pins)
 The only requirements to use this project, are the following:
 * Android device with the accessory mode capability
 * USB Cable
+* Linux OS with Go 1.22.0 installed
+
+# Usage
+To run the script, first build the project if you haven't yet:
+```shell
+make build
+```
+
+Then run it with sudo privileges:
+```shell
+sudo make run
+```
 
 # Details
 I have used a [Sony Xperia Z1 Compact](https://www.gsmarena.com/sony_xperia_z1_compact-5753.php) as the Android phone, which I am still trying to bruteforce the PIN.
@@ -39,7 +52,11 @@ This means that you will need to 'babysit' the phone to see if every PIN combina
 It will vary between devices due to the backoff period between many PIN entries.
 On my Sony you have to wait for 30 seconds after you have entered 5 PINs.
 
-On average it takes about 
+For the Sony it takes on average about 8 seconds to enter 5 pins. Then 30 second of backoff time to wait before you
+can enter another 5 pins.
+
+# Demo
+See video [here](media/android-bruteforce-demo.webp)
 
 # Credits
 * Thanks to [Tryanks](https://github.com/Tryanks) for posting [this repository](https://github.com/Tryanks/go-accessoryhid)
