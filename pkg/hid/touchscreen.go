@@ -2,7 +2,7 @@ package hid
 
 import (
 	"fmt"
-	"github.com/Tryanks/go-accessoryhid"
+	accessory "github.com/Tryanks/go-accessoryhid"
 	"github.com/jeanbritz/go-android-bruteforce-pin.git/pkg/utils"
 )
 

@@ -2,12 +2,13 @@ package main
 
 import (
 	"fmt"
-	accessory "github.com/Tryanks/go-accessoryhid"
-	"github.com/jeanbritz/go-android-bruteforce-pin.git/pkg/hid"
-	"github.com/jeanbritz/go-android-bruteforce-pin.git/pkg/utils"
 	"log"
 	"os"
 	"time"
+
+	accessory "github.com/Tryanks/go-accessoryhid"
+	"github.com/jeanbritz/go-android-bruteforce-pin.git/pkg/hid"
+	"github.com/jeanbritz/go-android-bruteforce-pin.git/pkg/utils"
 )
 
 type Pos struct {
@@ -96,7 +97,7 @@ func main() {
 		Accessory: touch,
 	}
 
-	pins, err := utils.ReadLines("pins/pins-4-length.txt")
+	pins, err := utils.ReadLines("../pins/pins-5-length.txt")
 	if err != nil {
 		logger.Fatalf("Could not find or load pins file, %s", err)
 	}

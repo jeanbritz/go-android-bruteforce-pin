@@ -9,15 +9,26 @@ The only requirements to use this project, are the following:
 * USB Cable
 * Linux OS with Go 1.22.0 installed
 
+# Prerequisites
+If you are running this project for the first time on Linux, then you should install `libusb` as well,
+if you have not already. You can install it as follows:
+```shell
+$ make install-libusb
+```
+or, alternatively:
+```shell
+# apt-get install libusb-1.0-0-dev
+```
+
 # Usage
 To run the script, first build the project if you haven't yet:
 ```shell
-make build
+$ make build
 ```
 
 Then run it with sudo privileges:
 ```shell
-sudo make run
+$ make run
 ```
 
 # Details
@@ -56,7 +67,7 @@ For the Sony it takes on average about 8 seconds to enter 5 pins. Then 30 second
 can enter another 5 pins.
 
 # Demo
-See video [here](media/android-bruteforce-demo.webp)
+![Demo](media/android-bruteforce-demo.webp)
 
 # Credits
 * Thanks to [Tryanks](https://github.com/Tryanks) for posting [this repository](https://github.com/Tryanks/go-accessoryhid)
