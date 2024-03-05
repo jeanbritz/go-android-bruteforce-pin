@@ -75,6 +75,17 @@ can enter another 5 pins.
 
 # Useful tools
 * [USB Descriptor and Request Parser](https://eleccelerator.com/usbdescreqparser/)
+* [HID Report descriptor converter](https://github.com/DIGImend/hidrd)
+* [HID Report descriptor parser](https://github.com/usb-tools/python-hid-parser)
 
 # Related links
-* https://www.beyondlogic.org/usbnutshell/usb6.shtml
+* [USB in a nutshell](https://www.beyondlogic.org/usbnutshell/usb1.shtml)
+* [HID Usage Table](https://www.usb.org/sites/default/files/hut1_5.pdf)
+* https://wiki.osdev.org/USB_Human_Interface_Devices
+* [AOA HID Bug](https://github.com/rom1v/aoa-hid-bug)
+* https://events.static.linuxfound.org/images/stories/slides/abs2013_bisson.pdf
+* https://github.com/torvalds/linux/blob/master/samples/uhid/uhid-example.c
+
+# Academic articles
+* http://ak.aos.sk/images/repozitar/sam/sam_1_2022/sam_1_2022_4.pdf
+* https://arxiv.org/pdf/2003.04868.pdf
