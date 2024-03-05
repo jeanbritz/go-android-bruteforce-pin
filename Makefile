@@ -2,7 +2,7 @@ install-libusb:
 	sudo apt-get install libusb-1.0-0-dev
 
 build:
-	go build -v ./...
+	go build ./...
 
 test:
 	go test ./... -cover -coverprofile coverage.out -race -mod=vendor -v
