@@ -28,7 +28,7 @@ $ make build
 
 Then run it with sudo privileges:
 ```shell
-$ make run
+$ make run-sony
 ```
 
 # Details
